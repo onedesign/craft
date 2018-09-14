@@ -1,0 +1,39 @@
+version: '2'
+
+volumes:
+  data_volume:
+    driver: local
+
+services:
+  web:
+    image: 1and1internet/ubuntu-16-apache-php-7.2
+    environment:
+      DOCUMENT_ROOT: web
+    ports:
+      - "8000:8080" # load the site via http://localhost:8000
+    volumes:
+      - .:/var/www
+    depends_on:
+      - mysql
+#      - redis
+    links:
+      - mysql
+#      - redis
+
+  mysql:
+    image: mysql:5.7
+    ports:
+      - "13306:3306" # connect to MySQL on mysql://127.0.0.1:13306
+    expose:
+      - 3306
+    volumes:
+      - data_volume:/var/lib/mysql
+      - ./.docker/sql_mode.cnf:/etc/mysql/mysql.conf.d/sql_mode.cnf
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: example-database-name
+      MYSQL_USER: mysqluser
+      MYSQL_PASSWORD: mysqlpass
+
+#  redis:
+#    image: redis:3.2
