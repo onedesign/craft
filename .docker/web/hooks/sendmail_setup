@@ -1,0 +1,21 @@
+#!/bin/bash
+# This sets up a dummy sendmail script to output emails to stdout
+
+# Write the php script
+cat >/usr/sbin/sendmail <<'EOF'
+#!/usr/bin/php
+<?php
+/**
+ * This script is a sendmail wrapper for php to log calls of the php mail() function.
+ */
+$stdin = fopen('php://stdin', 'r');
+$stderr = fopen('php://stderr', 'w');
+while ($line = fgets($stdin)) {
+  fwrite($stderr, $line);
+}
+fflush($stderr);
+fclose($stderr);
+EOF
+
+# Enable exec
+chmod +x /usr/sbin/sendmail
