@@ -3,8 +3,10 @@
 This is a starter project for Craft 3 projects at [One Design Company](https://onedesigncompany.com).
 
 ## Requirements
+- PHP 7.2+
 - [Composer >= 1.6.5](https://getcomposer.org)
 - [Node >=6.11.1 / NPM >=3.10.3](https://nodejs.org/en/)
+- [Docker for Mac](https://docs.docker.com/v17.12/docker-for-mac/install/)
 
 **NOTE:** We only need composer >= 1.6.5 because of the `--remove-vcs` option in the command below. If you run into an issue where Composer says something like "The "--remove-vcs" option does not exist." you're probably on an older version. Either update your composer (`composer self-update`) or run the command without the `--remove-vcs` option.
 
@@ -78,16 +80,18 @@ vim .env
 
 # Install deps
 composer install
-yarn
 
-# Start the containers
+# Start the containers (in a different CLI tab/pane to watch the output)
 docker-compose up
 
 # Import a database dump (use database name configured in .env rather than craft_app)
 mysql -u root -h 127.0.0.1 -P 13306 craft_app < my_dump_file.sql
 
-# Open your browser
-open http://localhost:8000/
+# Start front end proxy
+yarn start
+
+# Open your browser to http://localhost:3000
+open http://localhost:3000
 ```
 
 ## Resources
