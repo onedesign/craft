@@ -84,7 +84,7 @@ yarn
 docker-compose up
 
 # Import a database dump (use database name configured in .env rather than craft_app)
-mysql -u root -h 127.0.0.1 craft_app < my_dump_file.sql
+mysql -u root -h 127.0.0.1 -P 13306 craft_app < my_dump_file.sql
 
 # Open your browser
 open http://localhost:8000/
