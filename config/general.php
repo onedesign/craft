@@ -11,7 +11,7 @@
 // No components defined by default
 $components = [];
 
-
+// Redis is optional, but can be used when scaling Craft across multiple servers.
 if (getenv('REDIS_URL') && !empty(getenv('REDIS_URL'))) {
     /**
      * This converts the redis url in the ENV vars to what php expects for the session config

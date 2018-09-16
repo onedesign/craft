@@ -15,6 +15,11 @@ if (file_exists(CRAFT_BASE_PATH.'/.env')) {
   (new Dotenv\Dotenv(CRAFT_BASE_PATH))->load();
 }
 
+// Allow for setting a custom storage path
+if (getenv('CRAFT_STORAGE_PATH')) {
+  define('CRAFT_STORAGE_PATH', getenv('CRAFT_STORAGE_PATH'));
+}
+
 // Load and run Craft
 define('CRAFT_ENVIRONMENT', getenv('ENVIRONMENT') ?: 'production');
 $app = require CRAFT_VENDOR_PATH.'/craftcms/cms/bootstrap/web.php';
