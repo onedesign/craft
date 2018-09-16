@@ -69,6 +69,27 @@ Plugins are not installed or activated through this process. You'll have to go i
 
 All ENV vars are documented within `.env.example`. When adding a new ENV var, be sure to add it to this file with proper comments and documentation.
 
+## Setup with Docker
+
+```
+# Configure your environment vars
+cp .env.example .env
+vim .env
+
+# Install deps
+composer install
+yarn
+
+# Start the containers
+docker-compose up
+
+# Import a database dump (use database name configured in .env rather than craft_app)
+mysql -u root -h 127.0.0.1 craft_app < my_dump_file.sql
+
+# Open your browser
+open http://localhost:8000/
+```
+
 ## Resources
 
 #### Official Resources
