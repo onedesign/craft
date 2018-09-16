@@ -73,16 +73,20 @@ All ENV vars are documented within `.env.example`. When adding a new ENV var, be
 
 ## Setup with Docker
 
+You first need to install [Docker for Mac](https://docs.docker.com/v17.12/docker-for-mac/install/).
+
 ```
 # Configure your environment vars
 cp .env.example .env
 vim .env
 
-# Install deps
+# Install php dependencies
 composer install
 
-# Start the containers (in a different CLI tab/pane to watch the output)
+# Start the containers (Apache logs and email will output from here)
 docker-compose up
+
+# In a separate CLI tab
 
 # Import a database dump (use database name configured in .env rather than craft_app)
 mysql -u root -h 127.0.0.1 -P 13306 craft_app < my_dump_file.sql
@@ -95,6 +99,8 @@ open http://localhost:3000
 ```
 
 ## Resources
+
+Craft has a great community of developers and plent of documentation. Below are some resources for Craft development.
 
 #### Official Resources
 - [Craft 3 Documentation](https://docs.craftcms.com/v3/)
