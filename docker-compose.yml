@@ -27,7 +27,7 @@ services:
   mysql:
     image: mysql:5.7
     ports:
-      - "${DB_PORT}:3306" # Exposes mysql on localhost at DB_PORT (in .env file)
+      - "13306:${DB_PORT}" # Exposes mysql on localhost at DB_PORT (in .env file)
     expose:
       - 3306
     volumes:
