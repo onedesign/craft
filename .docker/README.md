@@ -17,4 +17,4 @@ The directories in `.docker/` align with the containers defined in `docker-compo
 
 These are scripts that run when the container starts up.
 
-- `sendmail_setup` - Creates a dummy sendmail script in order to log all emails to the docker-compose output
+- `sendmail_setup` - Creates a dummy sendmail script (replaces `sendmail` in the container) in order to log all emails to the docker-compose output
