@@ -1,0 +1,23 @@
+{
+  "extends": [
+    "stylelint-config-standard"
+  ],
+  "plugins": [
+    "stylelint-a11y",
+    "stylelint-prettier",
+    "stylelint-scss"
+  ],
+  "rules": {
+    "prettier/prettier": true,
+    "a11y/media-prefers-reduced-motion": true,
+    "a11y/no-outline-none": true,
+    "a11y/selector-pseudo-class-focus": true,
+    "max-nesting-depth": 2,
+    "at-rule-no-unknown": [true, {
+      "ignoreAtRules": [
+        "extends",
+        "include"
+      ]
+    }]
+  }
+}
