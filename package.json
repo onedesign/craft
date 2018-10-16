@@ -8,7 +8,8 @@
     "build": "NODE_ENV=production blendid build",
     "postinstall": "npm run build",
     "lint": "eslint ./src --fix",
-    "lint:styles": "stylelint **/*.scss --fix"
+    "lint:styles": "stylelint **/*.scss --fix",
+    "precommit": "npm run lint & npm run lint:styles"
   },
   "engines": {
     "node": ">=6.11.1",
@@ -32,6 +33,11 @@
     "> 2%",
     "ie >= 11"
   ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run precommit"
+    }
+  },
   "dependencies": {
     "blendid": "^4.4.3",
     "dotenv": "^6.0.0",
