@@ -6,10 +6,11 @@
   "scripts": {
     "start": "NODE_ENV=development blendid",
     "build": "NODE_ENV=production blendid build",
+    "prebuild": "npm run lint:all",
     "postinstall": "npm run build",
     "lint": "eslint ./src --fix",
     "lint:styles": "stylelint **/*.scss --fix",
-    "precommit": "npm run lint & npm run lint:styles"
+    "lint:all": "npm run lint & npm run lint:styles"
   },
   "engines": {
     "node": ">=6.11.1",
@@ -35,7 +36,7 @@
   ],
   "husky": {
     "hooks": {
-      "pre-commit": "npm run precommit"
+      "pre-commit": "npm run lint:all"
     }
   },
   "dependencies": {
