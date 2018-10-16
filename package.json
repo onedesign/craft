@@ -6,7 +6,8 @@
   "scripts": {
     "start": "NODE_ENV=development blendid",
     "build": "NODE_ENV=production blendid build",
-    "postinstall": "npm run build"
+    "postinstall": "npm run build",
+    "lint:styles": "stylelint **/*.scss --fix"
   },
   "engines": {
     "node": ">=6.11.1",
@@ -40,6 +41,15 @@
     "babel-eslint": "^8.2.5",
     "eslint": "^5.0.0",
     "eslint-config-odc": "^1.1.0",
-    "eslint-plugin-react": "^7.9.1"
+    "eslint-plugin-react": "^7.9.1",
+    "prettier": "^1.14.3",
+    "stylelint": "^9.6.0",
+    "stylelint-a11y": "^1.1.8",
+    "stylelint-config-recommended": "^2.1.0",
+    "stylelint-config-recommended-scss": "^3.2.0",
+    "stylelint-config-standard": "^18.2.0",
+    "stylelint-prettier": "^1.0.3",
+    "stylelint-scss": "^3.3.1",
+    "stylelint-selector-bem-pattern": "^2.0.0"
   }
 }
