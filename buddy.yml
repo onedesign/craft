@@ -2,8 +2,8 @@
   trigger_mode: "ON_EVERY_PUSH"
   ref_name: "feature/buddy-config"
   ref_type: "BRANCH"
-  target_site_url: "$TARGET_URL"
-  trigger_condition: "MANUAL"
+  target_site_url: "${target_url}"
+  trigger_condition: "ALWAYS"
   actions:
     - action: "Composer install"
       type: "BUILD"
