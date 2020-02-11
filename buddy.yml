@@ -6,7 +6,7 @@
   actions:
     - action: "Test"
       type: "BUILD"
-      working_directory: "/app"
+      working_directory: "/buddy/app"
       docker_image_name: "library/node"
       docker_image_tag: "lts"
       execute_commands:
