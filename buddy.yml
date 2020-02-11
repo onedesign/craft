@@ -134,8 +134,8 @@
       commands:
         - "echo \"Updating craft permissions\""
         - "chmod +x ./craft"
-        - "echo \"Running migrations\""
-        - "./craft migrate/all"
+        - "#echo \"Running migrations\""
+        - "#./craft migrate/all"
         - "echo \"Syncing project config\""
         - "./craft project-config/sync"
       run_as_script: true
