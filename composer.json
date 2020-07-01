@@ -19,7 +19,7 @@
     "rss": "https://craftcms.com/changelog.rss"
   },
   "require": {
-    "craftcms/cms": "^3.4.0",
+    "craftcms/cms": "^3.4.25",
     "craftcms/redactor": "v2.x-dev",
     "vlucas/phpdotenv": "^3.4.0",
     "clubstudioltd/craft-asset-rev": "^6.0",
@@ -28,6 +28,9 @@
     "topshelfcraft/environment-label": "^3.1",
     "yiisoft/yii2-redis": "~2.0.0",
     "nystudio107/craft-seomatic": "v3.x-dev"
+  },
+  "require-dev": {
+    "yiisoft/yii2-shell": "^2.0.3"
   },
   "autoload": {
     "psr-4": {
@@ -44,8 +47,6 @@
     "post-create-project-cmd": [
       "@php -r \"copy('.env.example', '.env');\"",
       "@php -r \"unlink('composer.json');\"",
-      "@php -r \"unlink('LICENSE.md');\"",
-      "@php -r \"unlink('README.md');\"",
       "@php -r \"rename('composer.json.default', 'composer.json');\"",
       "@composer dump-autoload -o",
       "npm install",
