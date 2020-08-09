@@ -2,8 +2,8 @@
 @import "variables";
 
 // Vendor
-@import "normalize.css";
-@import "sass-mq/mq";
+@import "~normalize.css";
+@import "~sass-mq/mq";
 
 // Utils
 @import "util/visually-hidden";
