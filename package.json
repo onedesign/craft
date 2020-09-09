@@ -6,7 +6,6 @@
   "scripts": {
     "start": "NODE_ENV=development blendid",
     "build": "NODE_ENV=production blendid build",
-    "postinstall": "npm run build",
     "lint": "eslint ./src --fix"
   },
   "engines": {
