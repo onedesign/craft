@@ -55,6 +55,11 @@ That will output the command to your terminal and replace the value in your .env
 
 The intention of the `app` directory is to provide a slightly better separation of files within this project. When we deploy, we only deploy the `app` directory the server to save a bit of bandwidth and make sure files that don't need to be on the server don't exist on the server. Similarly, you can mound only the `app` directory to a VM or local development environment of choice. 
 
+This does mean that when you run `composer install` you will either need to be within the `app` directory, or use the `-d` option
+```
+composer install -d app
+```
+
 ## Front End
 On the front end of things we're currently opting for [Blendid](https://github.com/vigetlabs/blendid) primarily in order to get a userful starter project up as fast as possible. If you're not familiar with Blendid you'll want to [read their wiki](https://github.com/vigetlabs/blendid/wiki) to get a better understanding of how it's put together and what you can do to customize it.
 
