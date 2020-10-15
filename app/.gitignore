@@ -1,0 +1,10 @@
+/.env
+/.idea
+/vendor
+.DS_Store
+
+# BLITZ CACHING
+/web/cache/blitz/
+
+# ASSETS
+/web/dist
