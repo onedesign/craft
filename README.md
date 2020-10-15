@@ -30,7 +30,7 @@ That will take a little bit, and output a bunch of junk to your console. The com
 
 When `creact-project` is done doing all that, run:
 ```
-$ ./craft setup
+$ ./app/craft setup
 ```
 
 This command will ask you question about your environment (mysql vs. postgres, databse user, database password, etc.), basically it will create a `.env` file with your answers which is why you're going to want to have your database created before hand. Otherwise, it will complain that it can't connect to the database. After asking all the .env questions, it will ask if you'd like to install Craft now or later, feel free to do whichever you'd like.
@@ -40,16 +40,20 @@ If you don't want to use the setup command, just copy the `.env.example` file to
 **NOTE:**
 If you're using MAMP as your local server of choice, the above command won't work. You have two options. First, you can copy the `.env.example` file in the repo and edit values on your own (be sure to generate a security key) OR you can point the command at your active version of PHP and run it that way. On macOS that looks something like
 ```
-$ /Applications/MAMP/bin/php/{ACTIVE_PHP_VERSION}/bin/php ./craft setup
+$ /Applications/MAMP/bin/php/{ACTIVE_PHP_VERSION}/bin/php ./app/craft setup
 ```
 Be sure to replace `ACTIVE_PHP_VERSION` in the above with the version MAMP is currently using. At the time of writing it's probably either `php7.1.12` or `php7.2.1`
 
 ### Generating a Security Key
 To generate a new security key, use the Craft console command.
 ```sh
-./craft setup/security-key
+./app/craft setup/security-key
 ```
 That will output the command to your terminal and replace the value in your .env file. 
+
+## Directory Structure
+
+The intention of the `app` directory is to provide a slightly better separation of files within this project. When we deploy, we only deploy the `app` directory the server to save a bit of bandwidth and make sure files that don't need to be on the server don't exist on the server. Similarly, you can mound only the `app` directory to a VM or local development environment of choice. 
 
 ## Front End
 On the front end of things we're currently opting for [Blendid](https://github.com/vigetlabs/blendid) primarily in order to get a userful starter project up as fast as possible. If you're not familiar with Blendid you'll want to [read their wiki](https://github.com/vigetlabs/blendid/wiki) to get a better understanding of how it's put together and what you can do to customize it.
