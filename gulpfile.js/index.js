@@ -1,6 +1,9 @@
 // Fallback to dev if no env is supplied.
 process.env.NODE_ENV = process.env.NODE_ENV || "development";
-require("dotenv").config();
+const path = require("path");
+require("dotenv").config({
+  path: path.resolve(process.cwd(), "app/.env")
+});
 const { series, parallel } = require("gulp");
 
 // Our base tasks

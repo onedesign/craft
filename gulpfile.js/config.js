@@ -2,7 +2,7 @@ const browserSync = require("browser-sync");
 const imagemin = require("gulp-imagemin");
 
 const srcBase = "./src";
-const destBase = "./web/dist";
+const destBase = "./app/web/dist";
 
 const env = process.env.NODE_ENV || "development";
 
