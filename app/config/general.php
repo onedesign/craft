@@ -19,7 +19,7 @@ return [
         // Whether generated URLs should omit "index.php"
         'omitScriptNameInUrls' => true,
 
-        // Control Panel trigger word
+        // Control panel trigger word
         'cpTrigger' => 'admin',
 
         // The secure key Craft will use for hashing and encrypting data
@@ -37,12 +37,17 @@ return [
         // Dev Mode (see https://craftcms.com/guides/what-dev-mode-does)
         'devMode' => true,
 
+        // Prevent crawlers from indexing pages and following links
+        'disallowRobots' => true,
+
         // Only allow admin changes in dev so project config doesn't get out of sync
         'allowAdminChanges' => true,
     ],
 
     // Staging environment settings
     'staging' => [
+        // Prevent crawlers from indexing pages and following links
+        'disallowRobots' => true,
     ],
 
     // Production environment settings
