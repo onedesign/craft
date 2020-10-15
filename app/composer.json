@@ -34,7 +34,7 @@
   },
   "autoload": {
     "psr-4": {
-      "modules\\": "modules/"
+      "modules\\": "app/modules/"
     }
   },
   "config": {
