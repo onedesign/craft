@@ -34,12 +34,11 @@
   },
   "autoload": {
     "psr-4": {
-      "modules\\": "app/modules/"
+      "modules\\": "modules/"
     }
   },
   "config": {
     "optimize-autoloader": true,
-    "vendor-dir": "app/vendor",
     "platform": {
       "php": "7.0"
     }
