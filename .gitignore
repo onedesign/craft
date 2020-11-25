@@ -2,7 +2,7 @@
 .DS_Store
 Thumbs.db
 
-# CRAFT ENVIRONMENT
+# CRAFT
 .env
 
 # COMPOSER
@@ -39,3 +39,7 @@ Thumbs.db
 .vscode
 config.codekit3
 prepros-6.config
+
+
+# BLITZ CACHING
+/web/cache/blitz/

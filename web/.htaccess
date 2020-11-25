@@ -10,13 +10,15 @@
     SetEnvIf X-Forwarded-Proto https HTTPS=on
 
     # Force redirect to HTTPS
-    RewriteCond %{HTTPS} off
-    RewriteCond %{HTTP:X-Forwarded-Proto} !https [NC]
-    RewriteCond %{HTTP_HOST} ^www.example.com [NC,OR]
-    RewriteCond %{HTTP_HOST} ^.+\.oneis.us [NC]
-    RewriteRule .* https://%{HTTP_HOST}%{REQUEST_URI} [R=302,L]
+    # Uncomment the rules below to enable. If hosting on Cloudways, these rules do not need to be enabled: https://support.cloudways.com/redirect-http-to-https/
+    # RewriteCond %{HTTPS} off
+    # RewriteCond %{HTTP:X-Forwarded-Proto} !https [NC]
+    # RewriteCond %{HTTP_HOST} ^www.example.com [NC,OR]
+    # RewriteCond %{HTTP_HOST} ^.+\.oneis.us [NC]
+    # RewriteRule .* https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
 
     # Redirect non-www to www
+    # Uncomment the rules below to enable
     # RewriteCond %{HTTP_HOST} ^example.com [NC]
     # RewriteRule ^(.*)$ https://www.example.com/$1 [L,R=301,NC]
 
@@ -25,17 +27,13 @@
     RewriteCond %{REQUEST_URI} ^.+\/$
     RewriteRule ^(.+)\/$ /$1 [L,R=301,NC]
 
-    # Adds noindex, nofollow headers for anything non-production
-    <IfModule mod_headers.c>
-      # For Apache 2.4
-      # <If "req('Host') != 'www.example.com'">
-      #     Header set X-Robots-Tag "noindex, nofollow"
-      # </If>
-
-      # For Apache 2.2
-      SetEnvIfNoCase Host [^(www.example.com)] not_production
-      Header set X-Robots-Tag "noindex,nofollow" ENV=not_production
-    </IfModule>
+    # Blitz cache rewrite
+    # https://putyourlightson.com/craft-plugins/blitz/docs#/?id=server-rewrites
+    RewriteCond %{DOCUMENT_ROOT}/cache/blitz/%{HTTP_HOST}/%{REQUEST_URI}/%{QUERY_STRING}/index.html -s
+    RewriteCond %{REQUEST_METHOD} GET
+    # Required as of version 2.1.0
+    RewriteCond %{QUERY_STRING} !token= [NC]
+    RewriteRule .* /cache/blitz/%{HTTP_HOST}/%{REQUEST_URI}/%{QUERY_STRING}/index.html [L]
 
     # Send would-be 404 requests to Craft
     RewriteCond %{REQUEST_FILENAME} !-f
@@ -45,14 +43,24 @@
 </IfModule>
 
 # ----------------------------------------------------------------------
-# This adds CORS headers for static assets
+# Security headers
 # ----------------------------------------------------------------------
 <IfModule mod_headers.c>
-  <FilesMatch "\.(ttf|ttc|otf|eot|woff|woff2|font.css|css|js|cur|gif|ico|jpe?g|png|svgz?|webp)$">
-    Header add Access-Control-Allow-Origin: "*"
-    Header set Access-Control-Allow-Methods: "GET,OPTIONS"
-    Header set Access-Control-Allow-Headers: "Content-Type"
-  </FilesMatch>
+
+  # Stop pages from loading when they detect XSS attacks
+  Header set X-XSS-Protection "1; mode=block" 
+
+  # Disable the ablity to render a page on this website in a '<frame>', '<iframe>' or '<object>'
+  Header set X-Frame-Options "SAMEORIGIN"
+
+  # Enable HSTS, which instructs clients to only connect to a website over encrypted HTTPS connections
+  Header set Strict-Transport-Security "max-age=31536000" env=HTTPS
+
+  # Protect against content-sniffing, page-framing and click-jacking, xss attacks
+  # https://htaccessbook.com/increase-security-x-security-headers/
+  Header set X-XSS-Protection "1; mode=block"
+  Header always append X-Frame-Options SAMEORIGIN
+  Header set X-Content-Type-Options nosniff
 </IfModule>
 
 # ----------------------------------------------------------------------
@@ -175,6 +183,13 @@
   ExpiresByType application/javascript                "access plus 1 year"
   ExpiresByType application/x-javascript              "access plus 1 year"
   ExpiresByType text/javascript                       "access plus 1 year"
+
+  
+  # Manifest files
+
+  ExpiresByType application/manifest+json             "access plus 1 week"
+  ExpiresByType application/x-web-app-manifest+json   "access plus 0 seconds"
+  ExpiresByType text/cache-manifest                   "access plus 0 seconds"
 
 
   # Media files
