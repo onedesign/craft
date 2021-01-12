@@ -4,7 +4,7 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
 
-    # Begin Auth stuff
+    # Begin Auth stuff: https://stackoverflow.com/questions/1359472/use-http-auth-only-if-accessing-a-specific-domain
     # Require a username & password if we're on a *.oneis.us domain
     SetEnvIfNoCase Host oneis\.us$ require_auth=true
     
