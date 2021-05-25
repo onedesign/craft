@@ -4,6 +4,21 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
 
+    # Begin Auth stuff: https://stackoverflow.com/questions/1359472/use-http-auth-only-if-accessing-a-specific-domain
+    # Require a username & password if we're on a *.oneis.us domain
+    SetEnvIfNoCase Host oneis\.us$ require_auth=true
+    
+    AuthUserFile .htpasswd  
+    AuthName "Password Protected"
+    AuthType Basic
+
+    Order Deny,Allow
+    Deny from all
+    Satisfy any
+    Require valid-user
+    Allow from env=!require_auth
+    # End auth stuff
+
     # This sets the environment variable HTTPS to "on"
     # if the request is behind a load balancer which terminates SSL.
     # In PHP, you can access this via $_SERVER['HTTPS']
